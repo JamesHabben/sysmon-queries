@@ -1,5 +1,5 @@
 # sysmon-queries
-Queries to parse sysmon event log file with Microsoft logparser.
+Queries to parse sysmon event log file with Microsoft logparser.<br>
 https://technet.microsoft.com/en-us/sysinternals/dn798348
 
 # Sysmon Event Format
