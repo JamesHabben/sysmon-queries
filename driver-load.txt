@@ -1,0 +1,9 @@
+Select RecordNumber,TimeGenerated,EventID,SourceName,ComputerName,SID, 
+	extract_token(strings,0,'|') AS UtcTime,
+	extract_token(strings,1,'|') AS ImagePath,
+	extract_token(strings,2,'|') AS HashType,
+	extract_token(strings,3,'|') AS Hash,
+	extract_token(strings,4,'|') AS Signed,
+	extract_token(strings,5,'|') AS Signature
+from f:\Microsoft-Windows-Sysmon%4Operational.evtx
+where EventID = 6

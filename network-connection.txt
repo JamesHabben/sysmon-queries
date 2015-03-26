@@ -1,0 +1,20 @@
+Select RecordNumber,TimeGenerated,EventID,SourceName,ComputerName,SID, 
+	extract_token(strings,0,'|') AS UtcTime,
+	extract_token(strings,1,'|') AS ProcGuid,
+	extract_token(strings,2,'|') AS ProcId,
+	extract_token(strings,3,'|') AS ImagePath,
+	extract_token(strings,4,'|') AS User,
+	extract_token(strings,5,'|') AS Prot,
+	extract_token(strings,6,'|') AS Init,
+	extract_token(strings,7,'|') AS SrcIsIp6,
+	extract_token(strings,8,'|') AS SrcIp,
+	extract_token(strings,9,'|') AS SrcHost,
+	extract_token(strings,10,'|') AS SrcPrt,
+	extract_token(strings,11,'|') AS SrcPrtNam,
+	extract_token(strings,12,'|') AS DstIsIp6,
+	extract_token(strings,13,'|') AS DstIp,
+	extract_token(strings,14,'|') AS DstHost,
+	extract_token(strings,15,'|') AS DstPrt,
+	extract_token(strings,16,'|') AS DstPrtNam
+from f:\Microsoft-Windows-Sysmon%4Operational.evtx
+where EventID = 3

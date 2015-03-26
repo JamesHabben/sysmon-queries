@@ -1,0 +1,10 @@
+Select RecordNumber,TimeGenerated,EventID,SourceName,ComputerName,SID, 
+	extract_token(strings,0,'|') AS UtcTime,
+	extract_token(strings,1,'|') AS ProcGuid,
+	extract_token(strings,2,'|') AS ProcId,
+	extract_token(strings,3,'|') AS ImagePath,
+	extract_token(strings,4,'|') AS TargetPath,
+	extract_token(strings,5,'|') AS NewCreateUtc,
+	extract_token(strings,6,'|') AS PrevCreateUtc
+from f:\Microsoft-Windows-Sysmon%4Operational.evtx
+where EventID = 2
