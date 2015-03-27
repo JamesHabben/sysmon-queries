@@ -1,0 +1,10 @@
+Select  
+	extract_token(strings,8,'|') AS SrcIp,
+	extract_token(strings,10,'|') AS SrcPrt,
+	extract_token(strings,13,'|') AS DstIp,
+	extract_token(strings,15,'|') AS DstPrt,
+	count(*) AS SockCount
+from c:\Host\event-list.evtx
+where EventID = 3
+group by SrcIp, SrcPrt, DstIp, DstPrt
+order by SockCount desc

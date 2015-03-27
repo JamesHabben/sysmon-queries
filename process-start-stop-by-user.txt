@@ -1,0 +1,22 @@
+Select RecordNumber,TimeGenerated,EventID,SourceName,ComputerName,SID, 
+	extract_token(strings,0,'|') AS UtcTime,
+	extract_token(strings,1,'|') AS ProcGuid,
+	extract_token(strings,2,'|') AS ProcId,
+	extract_token(strings,3,'|') AS ImagePath,
+	extract_token(strings,4,'|') AS Params,
+	extract_token(strings,5,'|') AS LogonUser,
+	extract_token(strings,6,'|') AS LogonGuid,
+	extract_token(strings,7,'|') AS LogonId,
+	extract_token(strings,8,'|') AS TermSesId,
+	extract_token(strings,9,'|') AS IntegLvl,
+	extract_token(strings,10,'|') AS HashType,
+	extract_token(strings,11,'|') AS Hash,
+	extract_token(strings,12,'|') AS ParProcGuid,
+	extract_token(strings,13,'|') AS ParProcId,
+	extract_token(strings,14,'|') AS ParImagePath,
+	extract_token(strings,15,'|') AS ParParams
+from c:\Host\event-list.evtx
+where EventID in (1;5) and 
+	(LogonUser like 'gst\\james.habben' or 
+	(EventID = 5 and ProcId in (select extract_token(strings,2,'|') FROM c:\Host\event-list.evtx WHERE extract_token(strings,5,'|') like 'gst\\james.habben')))
+order by ProcId, UtcTime

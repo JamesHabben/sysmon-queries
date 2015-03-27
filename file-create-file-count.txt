@@ -1,0 +1,8 @@
+Select  
+	extract_token(strings,3,'|') AS ImagePath,
+	extract_token(strings,4,'|') AS TargetPath,
+	count(*) AS FileCount
+from c:\Host\event-list.evtx
+where EventID = 2
+group by ImagePath, TargetPath
+order by FileCount desc

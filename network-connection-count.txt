@@ -1,0 +1,8 @@
+Select  
+	extract_token(strings,8,'|') AS SrcIp,
+	extract_token(strings,13,'|') AS DstIp,
+	count(*) AS ConCount
+from c:\Host\event-list.evtx
+where EventID = 3
+group by SrcIp, DstIp
+order by ConCount desc

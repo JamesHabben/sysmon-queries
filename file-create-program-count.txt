@@ -1,0 +1,7 @@
+Select  
+	extract_token(strings,3,'|') AS ImagePath,
+	count(*) AS ProgramCount
+from c:\Host\event-list.evtx
+where EventID = 2 
+group by ImagePath
+order by ProgramCount desc
