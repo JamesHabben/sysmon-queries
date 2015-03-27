@@ -1,0 +1,8 @@
+select 
+	extract_token(strings,3,'|') AS ImagePath,
+	extract_token(strings,4,'|') AS ImageLoaded,
+	COUNT(*) AS LoadCount
+from c:\Host\event-list.evtx
+where EventID = 7 and (imageloaded like '%wininet.dll%' or imageloaded like '%winsock32.dll%')
+group by ImagePath, ImageLoaded
+order by LoadCount desc
