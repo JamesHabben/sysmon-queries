@@ -1,0 +1,10 @@
+Select
+extract_token(strings,13,'|') AS DstIp,
+count(*) AS ConCount,
+max(extract_token(strings,0,'|')) AS LastDateUtc
+from I:\sysmon-queries\event-list.evtx
+where EventID = 3 and extract_token(strings,12,'|') = 'false' and 
+	not (DstIp like '10.%' or DstIp like '192.168.%' or
+	     DstIp like '172.1[6-9].%' or DstIp like '172.2_.%' or DstIp like '172.3[01].%' )
+group by DstIp
+order by ConCount desc
